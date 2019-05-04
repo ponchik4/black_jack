@@ -1,8 +1,12 @@
-class Cards
-  attr_reader :suit; :cards
+class Card
+  attr_reader :suit; :card
 
   def initislize
     @suit = suit
-    @cards = cards
+    @card = cards
+  end
+
+  def card_value
+
   end
 end
