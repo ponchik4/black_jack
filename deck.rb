@@ -9,6 +9,8 @@ class Deck
     shuffle_the_deck
   end
 
+  #Выдать карту
+
   private
   def shuffle_the_deck
     SUIT.each do |suit|
