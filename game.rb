@@ -1,4 +1,19 @@
 class Game
+
+  def create_player
+    puts "Назови мне свое имя"
+    name = gets.chomp
+    @player = Player.new(name)
+  end
+
+  def create_dealer
+    @dealer = Dealer.new
+  end
+
+  def start_the_game
+    puts "Я хочу сыграть с тобой в игру, #{@player.name}!"
+    @deck = Deck.new
+  end
   #Создается дилер
   #Создается игрок, запришивается имя игрока
   #Начинается игра
@@ -18,5 +33,9 @@ class Game
   #Когда 100 кончаются у одного из игроков - автоматически конец игры
 
   def user_data
+    create_player
+    create_dealer
+    start_the_game
+
   end
 end

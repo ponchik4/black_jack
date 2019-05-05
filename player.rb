@@ -1,11 +1,15 @@
+require_relative 'bank'
+
 class Player
-  def initislize(name)
+  include Bank
+
+  def initialize(name)
     @name = name
-    @card = []
-    @bank = 100
+    @cards = []
+    wallet
   end
 
-  #Пропустить ход
-  #Добавить ОДНУ карту (если на руках 2 карты)
-  #Открыть карты
+  def open_cards
+    "#{@cards}-#{@suit}"
+  end
 end
