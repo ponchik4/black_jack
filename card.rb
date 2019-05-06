@@ -1,21 +1,21 @@
 class Card
-  attr_reader :suit; :card; :value
+  attr_reader :suit, :rank, :value
 
-  def initislize
+  def initialize(rank, suit)
     @suit = suit
-    @card = card
+    @rank = rank
     @value = card_value
   end
 
   def card_value
-    x = @card
+    x = @rank
     case x
-    when (1..10)
-      @card.to_i
-    when J,Q,K
+    when 'J', 'Q', 'K'
       10
-    when A
+    when 'A'
       11
+    else
+      @rank
     end
   end
 end

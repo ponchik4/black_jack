@@ -5,4 +5,5 @@ require_relative 'bank'
 require_relative 'dealer'
 require_relative 'game'
 
-Dealer.new
+@deck = Deck.new
+puts @deck.cards
