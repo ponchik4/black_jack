@@ -1,12 +1,8 @@
 class Game
+  attr_reader :deck
 
   def initialize
-  end
-
-  def create_player
-    puts "Назови мне свое имя"
-    name = gets.chomp
-    @player = Player.new(name)
+    @interface = Interface.new
   end
 
   def create_dealer
@@ -14,62 +10,28 @@ class Game
   end
 
   def start_the_game
-    puts "Я хочу сыграть с тобой в игру, #{@player.name}!"
+    @interface.welcome
     @deck = Deck.new
+    @hand = Hand.new
     @hand_pl = @deck.hand
     @hand_deal = @deck.hand
     #ставки
-    hand_pl
+    @hand.hand_pl
     puts "Карты дилера: **"
     player_turn
     new_game
   end
 
-  def hand_pl
-    @hand_pl.each do |card|
-      puts "Карта: #{card.rank} #{card.suit} Очков: #{card.value}"
-    end
-  end
 
-  def player_turn
-    puts "Что будешь делать?
-    Нажми 1, если хочешь взять еще карту.
-    Нажми 2, если хочешь пропустить ход,
-    Нажми 3, если хочешь открыть карты"
-    x = gets.to_i
-    case x
-      when 1
-        hand_pl
-        @deck.draw.each do |card|
-          puts "Карта: #{card.rank} #{card.suit} Очков: #{card.value}"
-        end
-      when 2
-        dealer_turn
-      when 3
-        puts @deck.open_cards
-        #Подсчет очков
-      else
-        puts "Такого ответа быть не может!"
-        player_turn
-    end
-  end
 
   def dealer_turn
+
     #Ход Дилера: Пропустить ход (если очков у дилера 17 или более) || Добавить карту (если очков менее 17)
   end
 
-  def new_game
-    puts "Сыграем еще раз? 1 - да, 2 - нет"
-    x = gets.to_i
-    case x
-      when 1
-        self.start_the_game
-      when 2
-        abort "Пока-пока"
-      else
-        puts "У тебя только два варианте ответа!"
-        new_game
-    end
+
+
+  def game_result
   end
 
   #Открывают карты: Если у каждого по 3 карты. Игроку показать карты Дилера и сумму очков. +РЕЗУЛЬТАТ ИГРЫ
@@ -80,8 +42,9 @@ class Game
   #Когда 100 кончаются у одного из игроков - автоматически конец игры
 
   def user_data
-    create_player
+    @interface.create_player
     create_dealer
     start_the_game
+    @hand.card_sum
   end
 end

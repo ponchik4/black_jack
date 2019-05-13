@@ -1,18 +1,10 @@
-require_relative 'bank'
-
 class Player
-  include Bank
-
   attr_accessor :cards
-  attr_reader :name, :wallet
+  attr_reader :name, :bank
 
   def initialize(name)
     @name = name
-    wallet
-  end
-
-  def open_cards
-    @suit =
-    "#{@cards}-#{@suit}"
+    @bank = 100
+    @cards = []
   end
 end
