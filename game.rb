@@ -2,24 +2,30 @@ class Game
   attr_reader :deck
 
   def initialize
-    @interface = Interface.new
-  end
-
-  def create_dealer
     @dealer = Dealer.new
+    @deck = Deck.new
+    @interface = Interface.new
+    @player = Player.new
+    @hand = Hand.new
   end
 
   def start_the_game
     @interface.welcome
-    @deck = Deck.new
-    @hand = Hand.new
-    @hand_pl = @deck.hand
-    @hand_deal = @deck.hand
+    @dealer.cards = @deck.give_card
+    @player.cards = @deck.give_card
+    @hand.resalt(player, dealer)
+
+
+
+
+
+
+
     #ставки
     @hand.hand_pl
     puts "Карты дилера: **"
-    player_turn
-    new_game
+    @interface.player_turn(@deck)
+
   end
 
 
@@ -32,6 +38,7 @@ class Game
 
 
   def game_result
+
   end
 
   #Открывают карты: Если у каждого по 3 карты. Игроку показать карты Дилера и сумму очков. +РЕЗУЛЬТАТ ИГРЫ
@@ -42,9 +49,6 @@ class Game
   #Когда 100 кончаются у одного из игроков - автоматически конец игры
 
   def user_data
-    @interface.create_player
-    create_dealer
     start_the_game
-    @hand.card_sum
   end
 end

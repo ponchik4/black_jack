@@ -9,7 +9,7 @@ class Deck
     shuffle_the_deck
   end
 
-  def hand
+  def give_card
     @cards.pop(2)
   end
 

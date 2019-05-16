@@ -2,13 +2,21 @@ class Hand
   attr_reader :hand, :card_sum
 
   def initialize
-    @hand = @deck.hand
+    @interface = Interface.new
   end
 
-  def hand_pl
+  def resalt(player, dealer)
+    @player.cards
+    @dealer.cards
+  end
+
+  def show_cards
     @hand.each do |card|
       puts "Карта: #{card.rank} #{card.suit} Очков: #{card.value}"
     end
+  end
+
+  def open_card
   end
 
   def card_sum

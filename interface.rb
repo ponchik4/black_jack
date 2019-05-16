@@ -1,16 +1,16 @@
 class Interface
+  attr_accessor :name
 
-  def create_player
+  def player_name
     puts "Назови мне свое имя"
     name = gets.chomp
-    @player = Player.new(name)
   end
 
   def welcome
-    puts "Я хочу сыграть с тобой в игру, #{@player.name}!"
+    puts "Я хочу сыграть с тобой в игру!"
   end
 
-  def player_turn
+  def player_turn(deck)
     puts "Что будешь делать?
     Нажми 1, если хочешь взять еще карту.
     Нажми 2, если хочешь пропустить ход,
@@ -18,14 +18,14 @@ class Interface
     x = gets.to_i
     case x
       when 1
-        hand_pl
-        @deck.draw.each do |card|
+        @hand.hand_pl
+        deck.draw.each do |card|
           puts "Карта: #{card.rank} #{card.suit} Очков: #{card.value}"
         end
       when 2
         dealer_turn
       when 3
-        puts @deck.open_cards
+        puts deck.open_cards
         puts @hand.card_sum
       else
         puts "Такого ответа быть не может!"
