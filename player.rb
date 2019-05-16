@@ -1,6 +1,6 @@
 class Player
-  attr_accessor :cards
-  attr_reader :name, :bank
+  attr_accessor :cards, :bank
+  attr_reader :name
 
   def initialize
     @interface = Interface.new

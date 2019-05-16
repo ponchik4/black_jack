@@ -20,7 +20,9 @@ class Hand
   def open_card
   end
 
-  def card_sum
-    @cards.sum { |card| card.card_value }
+  def card_sum(user)
+    user.cards.each do |card|
+      puts "Карта очков: #{card.value}"
+    end
   end
 end

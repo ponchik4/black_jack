@@ -10,8 +10,9 @@ class Interface
     puts "Я хочу сыграть с тобой в игру!"
   end
 
-  def cards
-    puts ""
+  def show_cards(user)
+    puts "Твои карты: #{user.cards}"
+    puts "Карты дилера: **"
   end
 
   def score

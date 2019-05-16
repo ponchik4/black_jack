@@ -1,5 +1,5 @@
 class Game
-  attr_reader :deck
+  attr_reader :deck, :player, :dealer
 
   def initialize
     @dealer = Dealer.new
@@ -13,18 +13,11 @@ class Game
     @interface.welcome
     @dealer.cards = @deck.give_card
     @player.cards = @deck.give_card
-    @hand.resalt(@player)
-    @hand.resalt(@dealer)
+    @player.bank -=10
+    @dealer.bank -=10
+    @interface.show_cards(@player)
+    @hand.card_sum(@player)
     @interface.player_turn
-
-
-
-
-
-
-
-
-    #ставки
 
 
   end
