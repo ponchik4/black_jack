@@ -10,7 +10,15 @@ class Interface
     puts "Я хочу сыграть с тобой в игру!"
   end
 
-  def player_turn(deck)
+  def cards
+    puts ""
+  end
+
+  def score
+    puts ""
+  end
+
+  def player_turn
     puts "Что будешь делать?
     Нажми 1, если хочешь взять еще карту.
     Нажми 2, если хочешь пропустить ход,

@@ -5,9 +5,10 @@ class Hand
     @interface = Interface.new
   end
 
-  def resalt(player, dealer)
-    @player.cards
-    @dealer.cards
+  def resalt(user)
+    @cards = user.cards
+    card_sum
+
   end
 
   def show_cards
@@ -20,7 +21,6 @@ class Hand
   end
 
   def card_sum
-    @card_sum = 0
-    @card_sum += @cards.sum { |card| card.value }
+    @cards.sum { |card| card.card_value }
   end
 end

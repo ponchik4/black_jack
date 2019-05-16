@@ -13,7 +13,10 @@ class Game
     @interface.welcome
     @dealer.cards = @deck.give_card
     @player.cards = @deck.give_card
-    @hand.resalt(player, dealer)
+    @hand.resalt(@player)
+    @hand.resalt(@dealer)
+    @interface.player_turn
+
 
 
 
@@ -22,9 +25,7 @@ class Game
 
 
     #ставки
-    @hand.hand_pl
-    puts "Карты дилера: **"
-    @interface.player_turn(@deck)
+
 
   end
 
