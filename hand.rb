@@ -8,7 +8,6 @@ class Hand
   def resalt(user)
     @cards = user.cards
     card_sum
-
   end
 
   def show_cards
@@ -17,7 +16,7 @@ class Hand
     end
   end
 
-  def open_card
+  def game_result
   end
 
   def card_sum(user)

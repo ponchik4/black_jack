@@ -8,4 +8,3 @@ require_relative 'interface'
 
 
 game = Game.new
-game.user_data
