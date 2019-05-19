@@ -10,12 +10,6 @@ class Hand
     card_sum
   end
 
-  def show_cards
-    @hand.each do |card|
-      puts "Карта: #{card.rank} #{card.suit} Очков: #{card.value}"
-    end
-  end
-
   def game_result
   end
 
