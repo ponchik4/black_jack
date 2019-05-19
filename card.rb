@@ -3,7 +3,7 @@ class Card
 
   def initialize(rank, suit)
     @suit = suit
-    @rank = rank
+    @rank = rank.to_i
     @value = card_value
   end
 

@@ -1,8 +1,10 @@
 class Hand
+  attr_accessor :cards
   attr_reader :hand, :card_sum
 
-  def initialize
+  def initialize(name)
     @interface = Interface.new
+    @cards = []
   end
 
   def resalt(user)
@@ -13,9 +15,11 @@ class Hand
   def game_result
   end
 
-  def card_sum(user)
-    user.cards.each do |card|
-      puts "Карта очков: #{card.value}"
+  def card_sum
+    x = 0
+    @cards.each do |card|
+      x += card.value
     end
+    x
   end
 end

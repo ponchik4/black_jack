@@ -11,7 +11,7 @@ class Interface
   end
 
   def show_cards(user)
-    puts "Твои карты: #{user.cards}"
+    puts "Твои карты: #{user.hand.cards}"
     puts "Карты дилера: **"
   end
 
@@ -19,12 +19,16 @@ class Interface
     puts ""
   end
 
+  def value (user)
+    puts "Сумма твоих очков: #{user.card_sum}"
+  end
+
   def choose
     puts "Что будешь делать?
     Нажми 1, если хочешь взять еще карту.
     Нажми 2, если хочешь пропустить ход,
     Нажми 3, если хочешь открыть карты"
-    x = gets.to_i
+    gets.to_i
   end
 
   def wrong_answer
@@ -33,7 +37,7 @@ class Interface
 
   def new_game
     puts "Сыграем еще раз? 1 - да, 2 - нет"
-    x = gets.to_i
+    gets.to_i
   end
 
   def bye

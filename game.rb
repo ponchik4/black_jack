@@ -6,25 +6,24 @@ class Game
     @deck = Deck.new
     @interface = Interface.new
     @player = Player.new
-    @hand = Hand.new
     start_the_game
   end
 
   def start_the_game
     @interface.welcome
-    @dealer.cards = @deck.give_card
-    @player.cards = @deck.give_card
+    @player.hand.cards = @deck.give_card
+    @dealer.hand.cards = @deck.give_card
     @player.bank -=10
     @dealer.bank -=10
     @interface.show_cards(@player)
-    @hand.card_sum(@player)
+    @interface.value(@player.hand)
     player_turn
     new_game
   end
 
   def player_turn
-    x = @interface.choose
-    case x
+    user_input = @interface.choose
+    case user_input
       when 1
         @player.cards += @deck.draw
         @interface.show_cards(@player)
@@ -40,8 +39,8 @@ class Game
   end
 
   def new_game
-    x = @interface.new_game
-    case x
+    user_input = @interface.new_game
+    case user_input
       when 1
         Game.new
       when 2
