@@ -19,8 +19,16 @@ class Interface
     puts ""
   end
 
-  def value (user)
+  def value(user)
     puts "Сумма твоих очков: #{user.card_sum}"
+  end
+
+  def wallet(user)
+    puts "У тебя на счету: #{user.bank} USD"
+  end
+
+  def looser
+    puts "У тебя больше нет денег играть"
   end
 
   def choose
@@ -38,6 +46,18 @@ class Interface
   def new_game
     puts "Сыграем еще раз? 1 - да, 2 - нет"
     gets.to_i
+  end
+
+  def game_result_player_win
+    puts "Ты победил!"
+  end
+
+  def game_result_dealer_win
+    puts "Ты проиграл!"
+  end
+
+  def nobody_win
+    puts "Победила дружба!"
   end
 
   def bye

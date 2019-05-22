@@ -3,7 +3,6 @@ class Game
 
   def initialize
     @dealer = Dealer.new
-    @deck = Deck.new
     @interface = Interface.new
     @player = Player.new
     start_the_game
@@ -11,13 +10,17 @@ class Game
 
   def start_the_game
     @interface.welcome
+    @interface.wallet(@player)
+    @deck = Deck.new
     @player.hand.cards = @deck.give_card
     @dealer.hand.cards = @deck.give_card
-    @player.bank -=10
-    @dealer.bank -=10
+    @player.make_bet
+    @dealer.make_bet
     @interface.show_cards(@player)
     @interface.value(@player.hand)
     player_turn
+    dealer_turn
+    game_result
     new_game
   end
 
@@ -25,13 +28,13 @@ class Game
     user_input = @interface.choose
     case user_input
       when 1
-        @player.cards += @deck.draw
+        @player.hand.cards += @deck.draw
         @interface.show_cards(@player)
-        @hand.card_sum(@player)
+        @interface.value(@player.hand)
       when 2
         dealer_turn
       when 3
-        @hand.game_result
+        game_result
       else
         @interface.wrong_answer
         player_turn
@@ -42,7 +45,7 @@ class Game
     user_input = @interface.new_game
     case user_input
       when 1
-        Game.new
+        start_the_game if @player.bank >= 10
       when 2
         @interface.bye
         abort
@@ -53,17 +56,31 @@ class Game
   end
 
   def dealer_turn
-
-    #Ход Дилера: Пропустить ход (если очков у дилера 17 или более) || Добавить карту (если очков менее 17)
+    if
+      @dealer.hand.card_sum >= 17
+      player_turn
+    else
+      @dealer.hand.cards += @deck.draw
+    end
   end
+
+  def game_result
+    x = @player.hand.card_sum
+    y = @dealer.hand.card_sum
+      if x == y
+        @player.return_bank && @dealer.return_bank
+        @interface.nobody_win
+      elsif y < x && x <= 21 || y > 21 && y >= x
+        @player.take_bank
+        @interface.game_result_player_win
+      elsif 21 >= y && y > x || y <= 21 && y < x || x > 21
+        @dealer.take_bank
+        @interface.game_result_dealer_win
+      else
+        puts "Значит у меня косяк в условиях, тут есть что-то еще"
+      end
+   end
 
 
   #Открывают карты: Если у каждого по 3 карты. Игроку показать карты Дилера и сумму очков. +РЕЗУЛЬТАТ ИГРЫ
-  #Результат игры: Выигрывает игрок, у которого сумма очков ближе к 21
-  #Если у игрока сумма очков больше 21, то он проиграл
-  #Если сумма очков у игрока и дилера одинаковая, то объявляется ничья
-  #Банк: Деньги победителю || Ничья - ставки возвращаются игрокам
-  #Когда 100 кончаются у одного из игроков - автоматически конец игры
-
-
 end

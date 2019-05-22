@@ -13,13 +13,14 @@ class Hand
   end
 
   def game_result
+
   end
 
   def card_sum
-    x = 0
+    sum = 0
     @cards.each do |card|
-      x += card.value
+      sum += card.value
     end
-    x
+    sum
   end
 end

@@ -9,4 +9,16 @@ class Player
     @bank = 100
     @hand = Hand.new(self)
   end
+
+  def make_bet
+    @bank -= 10
+  end
+
+  def take_bank
+    @bank += 20
+  end
+
+  def return_bank
+    @bank += 10
+  end
 end
