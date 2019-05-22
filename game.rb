@@ -72,7 +72,7 @@ class Game
       elsif y < x && x <= 21 || y > 21 && x <= 21
         @player.take_bank
         @interface.game_result_player_win
-      elsif x < y || y <= 21 && y <= 21 || x > 21
+      elsif x < y && y <= 21 || x > 21
         @dealer.take_bank
         @interface.game_result_dealer_win
       else
