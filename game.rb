@@ -58,7 +58,6 @@ class Game
   def dealer_turn
     if
       @dealer.hand.card_sum >= 17
-      player_turn
     else
       @dealer.hand.cards += @deck.draw
     end
@@ -70,10 +69,10 @@ class Game
       if x == y
         @player.return_bank && @dealer.return_bank
         @interface.nobody_win
-      elsif y < x && x <= 21 || y > 21 && y >= x
+      elsif y < x && x <= 21 || y > 21 && x <= 21
         @player.take_bank
         @interface.game_result_player_win
-      elsif 21 >= y && y > x || y <= 21 && y < x || x > 21
+      elsif x < y|| y <= 21 && y <= 21 x || x > 21
         @dealer.take_bank
         @interface.game_result_dealer_win
       else
