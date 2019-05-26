@@ -12,15 +12,22 @@ class Interface
 
   def show_cards(user)
     puts "Твои карты: #{user.hand.cards}"
+  end
+
+  def close_card
     puts "Карты дилера: **"
   end
 
-  def score
-    puts ""
+  def show_cards_dealer(user)
+    puts "Карты диллера: #{user.hand.cards}"
   end
 
   def value(user)
     puts "Сумма твоих очков: #{user.card_sum}"
+  end
+
+  def value_dealer(user)
+    puts "Сумма очков дилера: #{user.card_sum}"
   end
 
   def wallet(user)

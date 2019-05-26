@@ -17,11 +17,20 @@ class Game
     @player.make_bet
     @dealer.make_bet
     @interface.show_cards(@player)
+    @interface.close_card
     @interface.value(@player.hand)
-    player_turn
-    dealer_turn
-    game_result
-    new_game
+    if @player.hand.card_sum >= 21
+      game_result
+    else
+      player_turn
+      dealer_turn
+      game_result
+    end
+    if @player.bank >= 10
+      new_game
+    else
+      @interface.looser
+    end
   end
 
   def player_turn
@@ -34,7 +43,7 @@ class Game
       when 2
         dealer_turn
       when 3
-        game_result
+        true
       else
         @interface.wrong_answer
         player_turn
@@ -66,6 +75,8 @@ class Game
   def game_result
     x = @player.hand.card_sum
     y = @dealer.hand.card_sum
+    @interface.show_cards_dealer(@dealer)
+    @interface.value_dealer(@dealer.hand)
       if x == y
         @player.return_bank && @dealer.return_bank
         @interface.nobody_win
@@ -79,7 +90,4 @@ class Game
         puts "Значит у меня косяк в условиях, тут есть что-то еще"
       end
    end
-
-
-  #Открывают карты: Если у каждого по 3 карты. Игроку показать карты Дилера и сумму очков. +РЕЗУЛЬТАТ ИГРЫ
 end

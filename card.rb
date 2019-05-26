@@ -1,13 +1,13 @@
 class Card
-  attr_reader :suit, :rank, :value
+  attr_reader :suit, :rank
 
   def initialize(rank, suit)
     @suit = suit
     @rank = rank
-    @value = card_value
+    @value = value
   end
 
-  def card_value
+  def value
     x = @rank
     case x
     when 'J', 'Q', 'K'
