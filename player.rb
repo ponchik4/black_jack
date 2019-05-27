@@ -4,10 +4,9 @@ class Player
 
   def initialize
     @interface = Interface.new
-    @interface.player_name
-    @name = name
+    @name = @interface.player_name
     @bank = 100
-    @hand = Hand.new(self)
+    @hand = Hand.new
   end
 
   def make_bet

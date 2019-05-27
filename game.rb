@@ -12,10 +12,7 @@ class Game
     @interface.welcome
     @interface.wallet(@player)
     @deck = Deck.new
-    @player.hand.cards = @deck.give_card
-    @dealer.hand.cards = @deck.give_card
-    @player.make_bet
-    @dealer.make_bet
+    for_players
     @interface.show_cards(@player)
     @interface.close_card
     @interface.value(@player.hand)
@@ -33,43 +30,46 @@ class Game
     end
   end
 
+  def for_players
+    [@player, @dealer].each do |user|
+      user.hand.cards = @deck.give_card
+      user.make_bet
+    end
+  end
+
   def player_turn
     user_input = @interface.choose
     case user_input
-      when 1
-        @player.hand.cards += @deck.draw
-        @interface.show_cards(@player)
-        @interface.value(@player.hand)
-      when 2
-        dealer_turn
-      when 3
-        true
-      else
-        @interface.wrong_answer
-        player_turn
-      end
+    when 1
+      @player.hand.cards += @deck.draw
+      @interface.show_cards(@player)
+      @interface.value(@player.hand)
+    when 2
+      dealer_turn
+    when 3
+      true
+    else
+      @interface.wrong_answer
+      player_turn
+    end
   end
 
   def new_game
     user_input = @interface.new_game
     case user_input
-      when 1
-        start_the_game if @player.bank >= 10
-      when 2
-        @interface.bye
-        abort
-      else
-        @interface.wrong_answer
-        new_game
+    when 1
+      start_the_game if @player.bank >= 10
+    when 2
+      @interface.bye
+      abort
+    else
+      @interface.wrong_answer
+      new_game
       end
   end
 
   def dealer_turn
-    if
-      @dealer.hand.card_sum >= 17
-    else
-      @dealer.hand.cards += @deck.draw
-    end
+    @dealer.hand.cards += @deck.draw if @dealer.hand.card_sum <= 17
   end
 
   def game_result
@@ -77,17 +77,15 @@ class Game
     y = @dealer.hand.card_sum
     @interface.show_cards_dealer(@dealer)
     @interface.value_dealer(@dealer.hand)
-      if x == y
-        @player.return_bank && @dealer.return_bank
-        @interface.nobody_win
-      elsif y < x && x <= 21 || y > 21 && x <= 21
-        @player.take_bank
-        @interface.game_result_player_win
-      elsif x < y && y <= 21 || x > 21
-        @dealer.take_bank
-        @interface.game_result_dealer_win
-      else
-        puts "Значит у меня косяк в условиях, тут есть что-то еще"
-      end
+    if x == y
+      @player.return_bank && @dealer.return_bank
+      @interface.nobody_win
+    elsif y < x && x <= 21 || y > 21 && x <= 21
+      @player.take_bank
+      @interface.game_result_player_win
+    elsif x < y && y <= 21 || x > 21
+      @dealer.take_bank
+      @interface.game_result_dealer_win
+    end
    end
 end

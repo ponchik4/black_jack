@@ -2,12 +2,12 @@ class Interface
   attr_accessor :name
 
   def player_name
-    puts "Назови мне свое имя"
+    puts 'Назови мне свое имя'
     name = gets.chomp
   end
 
   def welcome
-    puts "Я хочу сыграть с тобой в игру!"
+    puts 'Я хочу сыграть с тобой в игру!'
   end
 
   def show_cards(user)
@@ -15,7 +15,7 @@ class Interface
   end
 
   def close_card
-    puts "Карты дилера: **"
+    puts 'Карты дилера: **'
   end
 
   def show_cards_dealer(user)
@@ -35,7 +35,7 @@ class Interface
   end
 
   def looser
-    puts "У тебя больше нет денег играть"
+    puts 'У тебя больше нет денег играть'
   end
 
   def choose
@@ -47,27 +47,27 @@ class Interface
   end
 
   def wrong_answer
-    puts "Такого ответа быть не может!"
+    puts 'Такого ответа быть не может!'
   end
 
   def new_game
-    puts "Сыграем еще раз? 1 - да, 2 - нет"
+    puts 'Сыграем еще раз? 1 - да, 2 - нет'
     gets.to_i
   end
 
   def game_result_player_win
-    puts "Ты победил!"
+    puts 'Ты победил!'
   end
 
   def game_result_dealer_win
-    puts "Ты проиграл!"
+    puts 'Ты проиграл!'
   end
 
   def nobody_win
-    puts "Победила дружба!"
+    puts 'Победила дружба!'
   end
 
   def bye
-    puts "Пока-пока"
+    puts 'Пока-пока'
   end
 end

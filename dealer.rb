@@ -5,7 +5,7 @@ class Dealer
   def initialize
     @name = Dealer
     @bank = 100
-    @hand = Hand.new(self)
+    @hand = Hand.new
   end
 
   def make_bet

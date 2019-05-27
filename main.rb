@@ -6,5 +6,4 @@ require_relative 'game'
 require_relative 'hand'
 require_relative 'interface'
 
-
 game = Game.new

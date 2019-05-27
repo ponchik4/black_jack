@@ -1,6 +1,6 @@
 class Deck
-  SUIT = ['♣', '♥', '♠', '♦']
-  CARDS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
+  SUIT = ['♣', '♥', '♠', '♦'].freeze
+  CARDS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'].freeze
 
   attr_reader :cards
 
@@ -22,7 +22,7 @@ class Deck
   def shuffle_the_deck
     CARDS.each do |rank|
       SUIT.each do |suit|
-          @cards << Card.new(rank, suit)
+        @cards << Card.new(rank, suit)
       end
     end
     @cards.shuffle!

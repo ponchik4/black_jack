@@ -2,12 +2,12 @@ class Hand
   attr_accessor :cards
   attr_reader :card_sum
 
-  def initialize(name)
+  def initialize
     @cards = []
   end
 
   def ace_exist?
-    @cards.select { |card|  card.rank == "A" }
+    @cards.select { |card| card.rank == 'A' }
   end
 
   def card_sum
