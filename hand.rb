@@ -6,7 +6,7 @@ class Hand
     @cards = []
   end
 
-  def ace_exist?
+  def ace_exist
     @cards.select { |card| card.rank == 'A' }
   end
 
@@ -14,7 +14,7 @@ class Hand
     sum = 0
     @cards.each do |card|
       sum += card.value
-      sum -= 10 if ace_exist? && sum > 21
+      sum -= 10 if ace_exist && sum > 21
     end
     sum
   end
