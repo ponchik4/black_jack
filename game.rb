@@ -73,19 +73,19 @@ class Game
   end
 
   def game_result
-    x = @player.hand.card_sum
-    y = @dealer.hand.card_sum
+    player_score = @player.hand.card_sum
+    dealer_score = @dealer.hand.card_sum
     @interface.show_cards_dealer(@dealer)
     @interface.value_dealer(@dealer.hand)
-    if x == y
+    if player_score == dealer_score
       @player.return_bank && @dealer.return_bank
       @interface.nobody_win
-    elsif y < x && x <= 21 || y > 21 && x <= 21
-      @player.take_bank
-      @interface.game_result_player_win
-    elsif x < y && y <= 21 || x > 21
+    elsif player_score < dealer_score && dealer_score <= 21 || player_score > 21
       @dealer.take_bank
       @interface.game_result_dealer_win
+    else
+      @player.take_bank
+      @interface.game_result_player_win
     end
    end
 end
