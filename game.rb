@@ -12,7 +12,7 @@ class Game
     @interface.welcome
     @interface.wallet(@player)
     @deck = Deck.new
-    for_players
+    make_bet
     @interface.show_cards(@player)
     @interface.close_card
     @interface.value(@player.hand)
@@ -30,7 +30,7 @@ class Game
     end
   end
 
-  def for_players
+  def make_bet
     [@player, @dealer].each do |user|
       user.hand.cards = @deck.give_card
       user.make_bet
